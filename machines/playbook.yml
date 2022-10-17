@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: false
+
+  tasks:
+    - name: Verificar conexão
+      uri:
+        url: http://api.chucknddsdsdrris.io/jokes/random
+      register: resultado
+      ignore_errors: true
+
+    - name: Testando acessibilidade
+      debug: msg="Site OK!"
+      when: resultado.status == 200
+    
+    - debug:
+      var: resultado

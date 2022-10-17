@@ -1,0 +1,81 @@
+---
+- hosts: webservers
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Criando diretório A, se não existir
+      ansible.builtin.file:
+        recurse: yes
+        path: /home/ansible/A
+        state: directory
+        mode: '0755'
+
+    - name: Criando arquivo 1.txt
+      ansible.builtin.file:
+        path: /home/ansible/A/1.txt
+        state: touch
+        #mode: '0755'
+
+    - name: Criando diretório B, se não existir
+      ansible.builtin.file:
+        recurse: yes
+        path: /home/ansible/B
+        state: directory
+        mode: '0755'
+
+    - name: Criando arquivo 2.txt
+      ansible.builtin.file:
+        path: /home/ansible/A/2.txt
+        state: touch
+        #mode: '0755'
+
+    - name: Criando diretório C, se não existir
+      ansible.builtin.file:
+        recurse: yes
+        path: /home/ansible/C
+        state: directory
+        mode: '0755'
+
+    - name: Criando arquivo 3.txt
+      ansible.builtin.file:
+        path: /home/ansible/A/3.txt
+        state: touch
+        #mode: '0755'
+
+    - name: Criando diretório D, se não existir
+      ansible.builtin.file:
+        recurse: yes
+        path: /home/ansible/D
+        state: directory
+        mode: '0755'
+
+    - name: Criando arquivo 4.txt
+      ansible.builtin.file:
+        path: /home/ansible/A/4.txt
+        state: touch
+        #mode: '0755'
+
+    - name: Criando link simbólico (1)
+      ansible.builtin.file:
+        src: /home/ansible/A/1.txt
+        dest: /home/ansible/C/1_link
+        state: link
+
+    - name: Criando link simbólico (2)
+      ansible.builtin.file:
+        src: /home/ansible/A/2.txt
+        dest: /home/ansible/C/2_link
+        state: link
+
+    - name: Criando link simbólico (3)
+      ansible.builtin.file:
+        src: /home/ansible/A/3.txt
+        dest: /home/ansible/C/3_link
+        state: link
+
+    - name: Criando link simbólico (4)
+      ansible.builtin.file:
+        src: /home/ansible/A/4.txt
+        dest: /home/ansible/C/4_link
+        state: link
